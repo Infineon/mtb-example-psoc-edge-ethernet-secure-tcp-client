@@ -74,8 +74,12 @@ INCLUDES+=
 # Add additional defines to the build process (without a leading -D).
 DEFINES+=CY_RETARGET_IO_CONVERT_LF_TO_CRLF CY_RTOS_AWARE
 # Custom configuration of mbedtls library.
-MBEDTLSFLAGS = MBEDTLS_USER_CONFIG_FILE='"configs/mbedtls_user_config.h"' MBEDTLS_CONFIG_FILE='"mbedtls/mbedtls_config.h"' MBEDTLS_PSA_CRYPTO_CONFIG_FILE='"configs/ifx_psa_crypto_config.h"'
+MBEDTLSFLAGS = MBEDTLS_USER_CONFIG_FILE='"configs/mbedtls_user_config.h"'
 DEFINES+=$(MBEDTLSFLAGS) CYBSP_ETHERNET_CAPABLE
+# TF-PSA-Crypto (PSA Crypto API) configuration, required by mbedtls 4.x.
+DEFINES+=IFX_TF_PSA IFX_TF_PSA_CRYPTO
+DEFINES+=TF_PSA_CRYPTO_CONFIG_FILE='"configs/tf_psa_crypto_config.h"'
+DEFINES+=TF_PSA_CRYPTO_USER_CONFIG_FILE='"configs/tf_psa_crypto_user_config.h"'
 
 # Select softfp or hardfp floating point. Default is softfp.
 VFP_SELECT+=
